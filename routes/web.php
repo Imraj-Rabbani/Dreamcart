@@ -41,7 +41,6 @@ Route::controller(AdminController::class)->group(function(){
     
 });
 
-Route::get('/insert-products', [ProductController::class, 'index']);
 
 
 

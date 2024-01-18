@@ -21,7 +21,7 @@ class ProductController extends Controller
         if ($response->getStatusCode() === 200) {
             // Parse the JSON response
             $products = json_decode($response->getBody());
-            // dd($products);
+            dd($products);
             // Store the products in your database
             foreach ($products as $product) {
                 DB::table('products')->insert([
