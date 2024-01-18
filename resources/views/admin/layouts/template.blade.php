@@ -67,13 +67,13 @@
                     </li>
 
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{route('add.product')}}" class="menu-link">
                             <div data-i18n="Analytics">Add Product</div>
                         </a>
                     </li>
 
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{route('all.product')}}" class="menu-link">
                             <div data-i18n="Analytics">All Products</div>
                         </a>
                     </li>

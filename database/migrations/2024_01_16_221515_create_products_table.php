@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('desc');
             $table->integer('quantity');
             $table->integer('price');
+            $table->string('img_url');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')
                 ->references('id')

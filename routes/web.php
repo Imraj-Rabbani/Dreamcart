@@ -29,6 +29,14 @@ Route::controller(AdminController::class)->group(function(){
     Route::post('/edit-category', 'updateCategory')->name('update.category');
     Route::delete('/delete-category', 'deleteCategory')->name('delete.category');
 
+
+    Route::get('/all-product', 'product')->name('all.product');
+    Route::get('/add-product', 'addProduct')->name('add.product');
+    Route::post('/add-product', 'storeProduct')->name('store.product');
+    Route::get('/edit-product/{id}', 'editProduct')->name('edit.product');
+    Route::post('/edit-product', 'updateProduct')->name('update.product');
+    Route::delete('/delete-product', 'deleteProduct')->name('delete.product');
+
     
 });
 
