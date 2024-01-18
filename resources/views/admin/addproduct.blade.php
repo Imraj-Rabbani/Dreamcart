@@ -13,7 +13,7 @@ Add Product
                     <small class="text-muted float-end">Input Information</small>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('store.product')}}" method="POST" enctype="multipart/form-data">
+                    <form action="#" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Product Name</label>
@@ -68,7 +68,8 @@ Add Product
 
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Add Product</button>
+                                <button type="submit" class="btn btn-primary" disabled>Add Product</button>
+                                <div class="container">Using API to store products for now</div>
                             </div>
                         </div>
                     </form>

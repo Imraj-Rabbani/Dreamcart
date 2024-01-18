@@ -97,10 +97,12 @@ class AdminController extends Controller
             'product_img' => 'required|image|mimes:jpeg,jpg,gif,png,svg|max:2048',
         ]);
 
-        $image = $request->file('product_img');
-        $img_name = hexdec(uniqid()) . "." . $image->getClientOriginalExtension();
-        $request->product_img->move(public_path('upload'), $img_name);
-        $img_url = 'upload/' . $img_name;
+        //=== Code Snippet for storing picture as a file from the form ===//
+
+        // $image = $request->file('product_img');
+        // $img_name = hexdec(uniqid()) . "." . $image->getClientOriginalExtension();
+        // $request->product_img->move(public_path('upload'), $img_name);
+        // $img_url = 'upload/' . $img_name;
 
 
         DB::table('products')->insert([
@@ -109,10 +111,10 @@ class AdminController extends Controller
             'quantity' => $request->quantity,
             'desc' => $request->description,
             'category_id' => $request->category_id,
-            'img_url' => $img_url,
+            'img_url' => $request->product_img,
         ]);
 
-        return redirect()->route('all.product')->with('message', 'Category Added successfully');
+        return redirect()->route('all.product')->with('message', 'Product Added successfully');
     }
 
 

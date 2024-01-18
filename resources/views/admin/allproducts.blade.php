@@ -32,8 +32,9 @@
                             <tr class="text-center">
                                 <td>{{ $num }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td><img style="height: 50px" src="{{ asset($product->img_url) }}"
-                                        alt="Product Picture"></td>
+                                {{-- <td><img style="height: 50px" src="{{ asset($product->img_url) }}"
+                                        alt="Product Picture"></td> --}}
+                                <td><img style="height: 50px" src="{{ $product->img_url }}" alt="Product Picture"></td>
                                 <td>{{ $product->price }}</td>
                                 <td>
 
@@ -42,9 +43,9 @@
                                         onclick="event.preventDefault();
                                             document.getElementById('delete-product').submit();">
                                         Delete</a>
-                                        
-                                    <form action="{{ route('delete.product')}}" id="delete-product" method="POST"
-                                    style="display: none;">
+
+                                    <form action="{{ route('delete.product') }}" id="delete-product" method="POST"
+                                        style="display: none;">
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="id" value="{{ $product->id }}">
