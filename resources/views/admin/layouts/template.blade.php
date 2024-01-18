@@ -41,7 +41,7 @@
                 <ul class="menu-inner py-1">
 
                     <li class="menu-item active mt-4">
-                        <a href="#" class="menu-link">
+                        <a href="{{route('admin.dashboard')}}" class="menu-link">
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
                     </li>
@@ -51,13 +51,13 @@
                     </li>
 
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{route('add.category')}}" class="menu-link">
                             <div data-i18n="Analytics">Add Category</div>
                         </a>
                     </li>
 
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{route('all.category')}}" class="menu-link">
                             <div data-i18n="Analytics">All Category</div>
                         </a>
                     </li>

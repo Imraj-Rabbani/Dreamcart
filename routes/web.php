@@ -22,8 +22,16 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(AdminController::class)->group(function(){
     Route::get('/', 'show')->name('admin.dashboard');
+    Route::get('/all-category', 'category')->name('all.category');
+    Route::get('/add-category', 'addCategory')->name('add.category');
+    Route::post('/add-category', 'storeCategory')->name('store.category');
+    Route::get('/edit-category/{id}', 'editCategory')->name('edit.category');
+    Route::post('/edit-category', 'updateCategory')->name('update.category');
+    Route::delete('/delete-category', 'deleteCategory')->name('delete.category');
 
+    
 });
+
 
 
 require __DIR__.'/auth.php';
