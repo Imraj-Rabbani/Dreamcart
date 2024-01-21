@@ -65,7 +65,7 @@
 
                     <div class="dropdown">
                         
-                        <a href="javascript:void(0)" class="btn" onclick="openCategory()">All Category</a>
+                        <a href="javascript:void(0)" class="btn text-white" onclick="openCategory()">All Category</a>
                         <div class="dropdown-menu" id="dropdown-menu">
                             <h2>hello</h2>
                             @foreach ($categories as $category)

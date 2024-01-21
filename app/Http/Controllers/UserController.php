@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function homepage(){
-        return view('user.layouts.template');
+        $products = DB::table('products')->paginate(9);
+
+        return view('user.landingpage',['products'=>$products]);
     }
 
     public function category($id){
-    
+        
     }
 }

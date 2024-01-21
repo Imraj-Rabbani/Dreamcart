@@ -44,6 +44,7 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/homepage','homepage')->name('home');
     Route::get('/category/{id}','category')->name('category');
 
+
 });
 
 
