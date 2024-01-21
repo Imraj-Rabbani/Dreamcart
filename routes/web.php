@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::controller(AdminController::class)->group(function(){
-    Route::get('/', 'show')->name('admin.dashboard');
+    Route::get('/admin/dashboard', 'show')->name('admin.dashboard');
     Route::get('/all-category', 'category')->name('all.category');
     Route::get('/add-category', 'addCategory')->name('add.category');
     Route::post('/add-category', 'storeCategory')->name('store.category');
@@ -37,8 +37,13 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/edit-product/{id}', 'editProduct')->name('edit.product');
     Route::post('/edit-product', 'updateProduct')->name('update.product');
     Route::delete('/delete-product', 'deleteProduct')->name('delete.product');
+});
 
-    
+
+Route::controller(UserController::class)->group(function(){
+    Route::get('/homepage','homepage')->name('home');
+    Route::get('/category/{id}','category')->name('category');
+
 });
 
 
