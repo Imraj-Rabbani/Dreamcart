@@ -20,10 +20,9 @@
                         </ul>
                     </div>
                     <div class="btn_main">
-                        <form action="" method="POST">
+                        <form action="{{route('addtocart')}}" method="POST">
                             @csrf
                             <input type="hidden" value="{{ $product->id }}" name="product_id">
-                            <input type="hidden" value="{{ $product->price }}" name="price">
 
                             <div class="form-group">
                                 <label for="product_quantity">Quantity</label>
@@ -44,7 +43,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="container">
-                        <h1 class="fashion_taital border text-start my-4">Frequently bought with</h1>
+                        <h1 class="fashion_taital text-start my-4">Frequently bought with</h1>
                         <div class="fashion_section_2">
                             <div class="row">
 
@@ -58,8 +57,8 @@
                                         <div class="text-center py-4"><img class="my-4"
                                                 src="{{ asset($product->img_url) }}" style="height: 200px"></div>
                                         <div class="btn_main">
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                            <div class="seemore_bt"><a href="">See More</a></div>
+                                            <div class="buy_bt"><a href="#" >Buy Now</a></div>
+                                            <div class="seemore_bt"><a href="{{route('product',$product->id)}}">See More</a></div>
                                         </div>
                                     </div>
                                 </div>

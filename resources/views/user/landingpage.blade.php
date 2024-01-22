@@ -3,7 +3,12 @@
     Homepage
 @endsection()
 @section('content')
-    <div class="fashion_section" >
+    @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+    @endif
+    <div class="fashion_section">
         <div id="main_slider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -22,7 +27,8 @@
                                                     src="{{ asset($product->img_url) }}" style="height: 200px"></div>
                                             <div class="btn_main">
                                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                                <div class="seemore_bt"><a href="">See More</a></div>
+                                                <div class="seemore_bt"><a href="{{ route('product', $product->id) }}">See
+                                                        More</a></div>
                                             </div>
                                         </div>
                                     </div>

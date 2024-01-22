@@ -113,7 +113,7 @@
 
     <div class="footer_section layout_padding">
         <div class="container">
-            <div class="footer_logo"><a href="index.html"><img src="{{ asset('home/images/logo-2.png') }}" style="height: 100px"></a>
+            <div class="footer_logo"><a href="{{route('home')}}"><img src="{{ asset('home/images/logo-2.png') }}" style="height: 100px"></a>
             </div>
             <div class="input_bt">
                 <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
