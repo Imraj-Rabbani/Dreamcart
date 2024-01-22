@@ -120,8 +120,10 @@ class AdminController extends Controller
     public function editProduct($id)
     {
         $product = DB::table('products')->find($id);
+        $category = DB::table('categories')->find($product->category_id);
+        $categories = DB::table('categories')->get();
 
-        return view('admin.editproduct', ['product' => $product]);
+        return view('admin.editproduct', ['product' => $product, "category" => $category, "categories" => $categories]);
     }
 
     public function updateProduct(Request $request)
@@ -139,6 +141,7 @@ class AdminController extends Controller
                 'name' => $request->name,
                 'price' => $request->price,
                 'quantity' => $request->quantity,
+                'category_id' => $request->category_id,
                 'desc' => $request->description,
             ]);
 

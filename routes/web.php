@@ -43,6 +43,7 @@ Route::controller(AdminController::class)->group(function(){
 Route::controller(UserController::class)->group(function(){
     Route::get('/homepage','homepage')->name('home');
     Route::get('/category/{id}','category')->name('category');
+    Route::get('product/{id}','product')->name('product');
 
 
 });

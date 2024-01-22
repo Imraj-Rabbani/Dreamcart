@@ -38,6 +38,22 @@ Edit Product
                         </div>
 
                         <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Select Category</label>
+                            <div class="col-sm-10">
+                                <select class="form-select" id="product_category_id" name="category_id" aria-label="Default select example">
+                                    <option selected value="{{$category->id}}">{{$category->name}}</option>
+
+                                    @foreach ($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                        
+                                    @endforeach
+
+
+                                  </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Product Short Description</label>
                             <div class="col-sm-10">
                                 <textarea name="description" id="product_short_des" class="form-control" cols="30" rows="10" >{{$product->desc}}</textarea>
