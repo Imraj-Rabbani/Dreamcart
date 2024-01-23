@@ -6,13 +6,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('admin.dashboard');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,17 +31,28 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/edit-product/{id}', 'editProduct')->name('edit.product');
     Route::post('/edit-product', 'updateProduct')->name('update.product');
     Route::delete('/delete-product', 'deleteProduct')->name('delete.product');
+
+    Route::get('/pending-orders','pendingOrder')->name('pending.order');
 });
 
 
 Route::controller(UserController::class)->group(function(){
-    Route::get('/homepage','homepage')->name('home');
+    Route::get('/','homepage')->name('home');
     Route::get('/category/{id}','category')->name('category');
     Route::get('/product/{id}','product')->name('product');
+    Route::delete('/product','deleteProduct')->name('delete.product');
+
 
     Route::post('/add-to-cart','addToCart')->name('addtocart');
 
     Route::get('/cart','showCart')->name('showcart');
+
+    Route::get('/add-address','address')->name('address');
+    Route::post('/add-address','createAddress')->name('address');
+
+    Route::get('/checkout','checkout')->name('checkout');
+
+    Route::post('/place-order','placeOrder')->name('place.order');
 
 });
 

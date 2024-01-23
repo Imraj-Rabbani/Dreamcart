@@ -1,17 +1,19 @@
 @extends('user.layouts.template')
-@section('title')
-    Cart Items
-@endsection
 @section('content')
-    <h2 class="text-white my-4 fs-1 text-center">My Cart</h2>
-    @if (session()->has('message'))
-        <div class="alert alert-success">
-            {{ session()->get('message') }}
-        </div>
-    @endif
+    <h2 class="text-white my-4 fs-1 text-center">Order confirmation</h2>
     <div class="row">
         <div class="col-12">
-            <div class="box_main rounded shadow-none">
+            <div class="box_main shadow-none">
+                <div class="container">
+                    <h3>Product will be delivered at</h3>
+                    {{-- @dd($shipping_info) --}}
+                    <p>Area: {{ $shipping_info->address }}</p>
+                    <p>Postal Code: {{ $shipping_info->postal_code }}</p>
+                    <p>Phone Number: {{ $shipping_info->phone_number }}</p>
+
+                </div>
+                <hr>
+                <h3>Your Final Products are</h3>
                 <div class="table-responsive">
                     <table class="table table-striped border rounded text-center">
                         <tr>
@@ -37,7 +39,7 @@
 
                                 <td><a href="" class="btn btn-warning"
                                         onclick="event.preventDefault();
-                                document.getElementById('remove-product').submit();">Remove</a>
+                            document.getElementById('remove-product').submit();">Remove</a>
 
                                     <form action="{{ route('delete.product') }}" id="remove-product" method="POST"
                                         style="display: none">
@@ -52,19 +54,25 @@
                             @endphp
                         @endforeach
                         <tr>
+
                             <td></td>
                             <td></td>
                             <td>Total</td>
                             <td>{{ $total }}</td>
-                            @if ($total > 0)
-                                <td><a href="{{ route('checkout') }}" class="btn btn-primary">Checkout</a></td>
-                            @else
-                                <td><a href="" class="btn btn-primary disabled">Checkout</a></td>
-                            @endif
+                            <td>
+                                <form action="{{ route('place.order') }}" method="POST">
+                                    @csrf
+                                    <input type="submit" value="Place Order" name="order" class="btn btn-primary">
+                                </form>
+                            </td>
+
                         </tr>
                     </table>
+                    
+
+
+
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection

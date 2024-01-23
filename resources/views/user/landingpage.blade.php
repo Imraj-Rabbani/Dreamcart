@@ -4,7 +4,7 @@
 @endsection()
 @section('content')
     @if (session()->has('message'))
-        <div class="alert alert-success">
+        <div class="alert alert-success my-4">
             {{ session()->get('message') }}
         </div>
     @endif

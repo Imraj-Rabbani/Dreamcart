@@ -155,4 +155,7 @@ class AdminController extends Controller
         return redirect()->route('all.product')->with('message', 'Product Deleted successfully');
 
     }
+
+
+    
 }

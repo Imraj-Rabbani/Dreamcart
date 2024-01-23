@@ -32,6 +32,13 @@ class UserController extends Controller
         return view('user.product', ['product' => $product, 'related_products' => $related_products]);
     }
 
+    public function deleteProduct(Request $request)
+    {
+        DB::table('products')->where('id', $request->id)->delete();
+
+        return redirect()->route('showcart')->with('message', 'Product removed Successfully');
+    }
+
     public function addToCart(Request $request)
     {
 
@@ -46,17 +53,66 @@ class UserController extends Controller
 
     public function showCart(Request $request)
     {
+        $cart_items = DB::table('products')
+            ->join('carts', function (JoinClause $join) {
+                $join->on('products.id', 'carts.product_id')
+                    ->where('carts.user_id', Auth::id());
+            })
+            ->select('products.*', 'carts.quantity')
+            ->get();
+        return view('user.cartitems', ['cart_items' => $cart_items]);
+    }
 
-        // DB::table('products')
-        //     ->join('carts','products.id','carts.product_id')
-        //     ->get();
+    public function address()
+    {
+        return view('user.shippinginfo');
+    }
+
+    public function createAddress(Request $request)
+    {
+
+        DB::table('addresses')->insert([
+            'phone_number' => $request->phone,
+            'postal_code' => $request->postal,
+            'address' => $request->area,
+            'user_id' => Auth::id(),
+        ]);
+
+        return redirect()->route('home')->with('messsage', "Shipping Address have been saved successfully");
+    }
+
+    public function checkout()
+    {
+        $shipping_info = DB::table('addresses')->where('user_id', Auth::id())->first();
 
         $cart_items = DB::table('products')
-                        ->join('carts', function (JoinClause $join) {
-                            $join->on('products.id', 'carts.product_id')
-                            ->where('carts.user_id', Auth::id());
-                            })
-                            ->get();
-        return view('user.cartitems', ['cart_items'=>$cart_items]);
+            ->join('carts', function (JoinClause $join) {
+                $join->on('products.id', 'carts.product_id')
+                    ->where('carts.user_id', Auth::id());
+            })
+            ->select('products.*', 'carts.quantity')
+            ->get();
+
+        return view('user.checkout', ['shipping_info' => $shipping_info, 'cart_items' => $cart_items]);
+    }
+
+    public function placeOrder(Request $request){
+
+        $products = DB::table('carts')->where('user_id',Auth::id())->get();
+
+        // dd($products);
+
+        foreach($products as $product){
+            DB::table('orders')->insert([
+                'user_id' => Auth::id(),
+                'product_id' => $product->product_id,
+                'quantity' => $product->quantity,
+            ]);
+
+            DB::table('carts')->where('id',$product->id)->delete();
+        }
+
+        return redirect()->route('home')->with('message','Order placed Successfully');
+        
     }
 }
