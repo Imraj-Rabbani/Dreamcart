@@ -96,23 +96,55 @@ class UserController extends Controller
         return view('user.checkout', ['shipping_info' => $shipping_info, 'cart_items' => $cart_items]);
     }
 
-    public function placeOrder(Request $request){
+    public function placeOrder(Request $request)
+    {
 
-        $products = DB::table('carts')->where('user_id',Auth::id())->get();
+        $products = DB::table('carts')->where('user_id', Auth::id())->get();
 
         // dd($products);
 
-        foreach($products as $product){
+        foreach ($products as $product) {
             DB::table('orders')->insert([
                 'user_id' => Auth::id(),
                 'product_id' => $product->product_id,
                 'quantity' => $product->quantity,
             ]);
 
-            DB::table('carts')->where('id',$product->id)->delete();
+            DB::table('carts')->where('id', $product->id)->delete();
         }
 
-        return redirect()->route('home')->with('message','Order placed Successfully');
-        
+        return redirect()->route('home')->with('message', 'Order placed Successfully');
+
+    }
+
+    public function userDashboard()
+    {
+        $address = DB::table('addresses')->where('user_id', Auth::id())->first();
+
+        $pending_orders = DB::table('orders')
+            ->join('products', 'orders.product_id', 'products.id')
+            ->select('products.*')
+            ->where('orders.user_id', Auth::id())
+            ->where('orders.status', 'pending')
+            ->get();
+
+        $delivered_products = DB::table('orders')
+            ->join('products', 'orders.product_id', 'products.id')
+            ->select('products.*')
+            ->where('orders.user_id', Auth::id())
+            ->where('orders.status', '=','delivered')
+            ->get();
+        ;
+
+
+        return view(
+            'user.dashboard',
+            [
+                'address' => $address,
+                'pending_orders' => $pending_orders,
+                'delivered_products' => $delivered_products
+            ]
+        );
+
     }
 }

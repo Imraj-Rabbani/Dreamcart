@@ -26,7 +26,6 @@
                                             <div class="text-center py-4"><img class="my-4"
                                                     src="{{ asset($product->img_url) }}" style="height: 200px"></div>
                                             <div class="btn_main">
-                                                <div class="buy_bt"><a href="#">Buy Now</a></div>
                                                 <div class="seemore_bt"><a href="{{ route('product', $product->id) }}">See
                                                         More</a></div>
                                             </div>

@@ -59,6 +59,7 @@ Route::controller(UserController::class)->group(function(){
 
     Route::post('/place-order','placeOrder')->name('place.order');
 
+    Route::get('/user-dashboard','userDashboard')->name('user.dashboard');
 });
 
 
