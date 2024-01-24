@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,12 @@ class AdminController extends Controller
 {
     public function show()
     {
-        return view('admin.dashboard');
+        $users = DB::table('users')->count();
+        $products = DB::table('users')->count();
+        $orders = DB::table('users')->count();
+        $categories = DB::table('users')->count();
+
+        return view('admin.dashboard',['users'=>$users,'products'=>$products,'orders'=>$orders, 'categories'=>$categories ]);
     }
 
     //=== Category related Function ===/
@@ -157,5 +163,64 @@ class AdminController extends Controller
     }
 
 
-    
+    public function pendingOrder()
+    {
+        $users = DB::table('orders')
+            ->join('users', 'orders.user_id', 'users.id')
+            ->join('addresses', 'users.id', 'addresses.user_id')
+            ->select('users.*', 'addresses.address', 'addresses.postal_code', 'addresses.phone_number')
+            ->where('orders.status', 'pending')
+            ->distinct()
+            ->get();
+
+
+
+        $products = DB::table('orders')
+            ->join('products', 'orders.product_id', 'products.id')
+            ->get();
+
+
+        return view('admin.pendingorders', ['users' => $users, 'products' => $products]);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        DB::table('orders')
+            ->where('user_id', $request->id)
+            ->update(['status' => 'delivered']);
+
+        return redirect()->route('home')->with('message', 'Order Delivered Successfully');
+
+    }
+
+    public function deliveredOrder()
+    {
+        $users = DB::table('orders')
+            ->join('users', 'orders.user_id', 'users.id')
+            ->join('addresses', 'users.id', 'addresses.user_id')
+            ->select('users.*', 'addresses.address', 'addresses.postal_code', 'addresses.phone_number')
+            ->where('orders.status', 'delivered')
+            ->distinct()
+            ->get();
+
+
+
+        $products = DB::table('orders')
+            ->join('products', 'orders.product_id', 'products.id')
+            ->get();
+
+
+        return view('admin.deliveredorders', ['users' => $users, 'products' => $products]);
+    }
+
+    public function deleteOrder(Request $request)
+    {
+        DB::table('orders')
+            ->where('user_id', $request->id)
+            ->delete();
+
+        return redirect()->route('home')->with('message', 'Order Deleted Successfully');
+
+    }
+
 }

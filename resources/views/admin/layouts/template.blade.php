@@ -83,13 +83,13 @@
                     </li>
 
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{route('pending.order')}}" class="menu-link">
                             <div data-i18n="Analytics">Pending Orders</div>
                         </a>
                     </li>
 
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{route('delivered.order')}}" class="menu-link">
                             <div data-i18n="Analytics">Delivered</div>
                         </a>
                     </li>

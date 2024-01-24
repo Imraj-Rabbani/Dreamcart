@@ -33,6 +33,11 @@ Route::controller(AdminController::class)->group(function(){
     Route::delete('/delete-product', 'deleteProduct')->name('delete.product');
 
     Route::get('/pending-orders','pendingOrder')->name('pending.order');
+    Route::post('/change-status','changeStatus')->name('change.status');
+    Route::get('/delivered-orders','deliveredOrder')->name('delivered.order');
+    Route::post('/delete-order','deleteOrder')->name('delete.order');
+
+
 });
 
 

@@ -1,10 +1,10 @@
 @extends('admin.layouts.template')
 @section('title')
-Pending Orders
+Delivered Orders
 @endsection
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pages/</span> Pending Orders</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pages/</span> Delivered Orders</h4>
 
         <div class="card">
             @if (session()->has('message'))
@@ -61,11 +61,11 @@ Pending Orders
                             <div class="text-end my-4 mx-4">
                                 <a href="" class="btn btn-primary"
                                     onclick="event.preventDefault();
-                                    document.getElementById('order-delivered').submit();">Order
-                                    Delivered</a>
+                                    document.getElementById('order-delivered').submit();">Delete
+                                    Order From Database</a>
 
-                                <form action="{{ route('change.status') }}" id="order-delivered"
-                                    method="POST" style="display: none">
+                                <form action="{{ route('delete.order') }}" id="order-delivered" method="POST"
+                                    style="display: none">
                                     @csrf
                                     <input type="text" name="id" value={{ $user->id }}>
                                 </form>
