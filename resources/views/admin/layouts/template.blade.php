@@ -40,7 +40,7 @@
                 {{-- MENU --}}
                 <ul class="menu-inner py-1">
 
-                    <li class="menu-item active mt-4">
+                    <li class="menu-item mt-4">
                         <a href="{{route('admin.dashboard')}}" class="menu-link">
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
@@ -120,7 +120,7 @@
 
         </div>
     </div>
-
+<script src="{{asset('home/js/script.js')}}"></script>
 </body>
 
 </html>

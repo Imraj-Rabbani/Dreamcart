@@ -1,4 +1,7 @@
 @extends('user.layouts.template')
+@section('title')
+    Address
+@endsection
 @section('content')
 <div class="container fs-1 text-white text-center my-4">Add Your Delivery Address</div>
 <div class="row">

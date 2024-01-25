@@ -26,7 +26,7 @@ class CheckUserRole
         $role = Auth::user()->role; // assuming 'role' is the column name in your users table
 
         // Allow admin users, redirect regular users
-        if ($role == 'admin') {
+        if ($role == 1) {
             return $next($request);
         } else {
             return redirect()->route('home')->with('message','User access denied'); // or wherever you want to redirect regular users

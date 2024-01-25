@@ -64,19 +64,20 @@
                     {{-- SIDEBAR ENDS --}}
 
                     <div class="dropdown">
-
-                        <a href="javascript:void(0)" class="btn text-white" onclick="openCategory()">All Category</a>
-                        <div class="dropdown-menu" id="dropdown-menu">
-                            <h2>hello</h2>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton">All
+                            Category
+                        </button>
+                        <div class="dropdown-menu rounded bg-white mt-1" id="dropdown-menu">
                             @foreach ($categories as $category)
-                                <a class="dropdown-item"
+                                <a class="dropdown-item mb-1"
                                     href="{{ route('category', $category->id) }}">{{ $category->name }}</a>
                             @endforeach
                         </div>
                     </div>
                     <div class="main">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search Product">
+                            <input type="text" class="form-control" id="input-box" placeholder="Search Product"
+                                autocomplete="off">
                             <div class="input-group-append">
                                 <button class="btn btn-secondary" type="button"
                                     style="background-color: #f26522; border-color:#f26522 ">
@@ -112,10 +113,10 @@
                                         @csrf
                                     </form>
                                 @else
-                                    <li class="nav-item"><a class="mb-2 mx-2"
-                                            href="{{ route('login') }}">Login</a></li>
-                                    <li class="nav-item"><a class="mb-2"
-                                            href="{{ route('register') }}">Register</a></li>
+                                    <li class="nav-item"><a class="mb-2 mx-2" href="{{ route('login') }}">Login</a>
+                                    </li>
+                                    <li class="nav-item"><a class="mb-2" href="{{ route('register') }}">Register</a>
+                                    </li>
                                 @endif
                             </ul>
                         </div>
@@ -158,6 +159,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('home/js/script.js') }}"></script>
     <script>
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";

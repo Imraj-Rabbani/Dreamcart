@@ -1,4 +1,7 @@
 @extends('user.layouts.template')
+@section('title')
+    Checkout Page
+@endsection
 @section('content')
     <h2 class="text-white my-4 fs-1 text-center">Order confirmation</h2>
     <div class="row">
@@ -68,7 +71,7 @@
 
                         </tr>
                     </table>
-                    
+
 
 
 

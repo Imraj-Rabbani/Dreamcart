@@ -33,10 +33,11 @@
                             </tr>
                         @endforeach
                     </table>
+                </div>
             @endif
-            @else
+        @else
             <div class="fs-2 m-2 mt-4">Add Your Address</div>
-            <a href="{{route('address')}}" class="btn btn-primary">Go to Address Form</a>
+            <a href="{{ route('address') }}" class="btn btn-primary">Go to Address Form</a>
 
         @endif
 
@@ -62,6 +63,7 @@
                         </tr>
                     @endforeach
                 </table>
+            </div>
         @endif
     </div>
 @endsection

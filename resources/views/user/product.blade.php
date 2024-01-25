@@ -1,4 +1,7 @@
 @extends('user.layouts.template')
+@section('title')
+    {{$product->name}}
+@endsection
 @section('content')
     <div class="container pt-4">
         <div class="row">
