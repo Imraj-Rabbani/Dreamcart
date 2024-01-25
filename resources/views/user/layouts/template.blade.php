@@ -24,7 +24,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext"
         rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -35,7 +35,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="logo"><a href="{{route('home')}}"><img src="{{ asset('home/images/logo.png') }}" style="height: 100px"></a>
+                        <div class="logo"><a href="{{ route('home') }}"><img src="{{ asset('home/images/logo.png') }}"
+                                    style="height: 100px"></a>
                         </div>
                     </div>
                 </div>
@@ -53,8 +54,7 @@
 
 
                         @foreach ($categories as $category)
-                            <a
-                                href="{{ route('category', $category->id) }}">{{ $category->name }}</a>
+                            <a href="{{ route('category', $category->id) }}">{{ $category->name }}</a>
                         @endforeach
 
                     </div>
@@ -64,12 +64,11 @@
                     {{-- SIDEBAR ENDS --}}
 
                     <div class="dropdown">
-                        
+
                         <a href="javascript:void(0)" class="btn text-white" onclick="openCategory()">All Category</a>
                         <div class="dropdown-menu" id="dropdown-menu">
                             <h2>hello</h2>
                             @foreach ($categories as $category)
-                            
                                 <a class="dropdown-item"
                                     href="{{ route('category', $category->id) }}">{{ $category->name }}</a>
                             @endforeach
@@ -87,17 +86,37 @@
                         </div>
                     </div>
                     <div class="header_box">
-                        
+
                         <div class="login_menu">
                             <ul>
-                                <li><a href="{{route('showcart')}}">
+                                <li><a href="{{ route('showcart') }}">
                                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                         <span class="padding_10">Cart</span></a>
                                 </li>
-                                <li><a href="{{route('user.dashboard')}}">
-                                        <i class="fa fa-user" aria-hidden="true"></i>
-                                        <span class="padding_10">Account</span></a>
-                                </li>
+                                @php
+                                    $logged = Illuminate\Support\Facades\Auth::check();
+                                @endphp
+                                @if ($logged)
+                                    <li class="nav-item">
+                                        <a class="mx-2" href="{{ route('user.dashboard') }}">
+                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                            <span class="padding_10">My Account</span></a>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item"><a class="mb-2" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">Logout</a>
+                                    </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                @else
+                                    <li class="nav-item"><a class="mb-2 mx-2"
+                                            href="{{ route('login') }}">Login</a></li>
+                                    <li class="nav-item"><a class="mb-2"
+                                            href="{{ route('register') }}">Register</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -113,7 +132,8 @@
 
     <div class="footer_section layout_padding">
         <div class="container">
-            <div class="footer_logo"><a href="{{route('home')}}"><img src="{{ asset('home/images/logo-2.png') }}" style="height: 100px"></a>
+            <div class="footer_logo"><a href="{{ route('home') }}"><img src="{{ asset('home/images/logo-2.png') }}"
+                        style="height: 100px"></a>
             </div>
             <div class="input_bt">
                 <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
@@ -146,8 +166,6 @@
         function closeNav() {
             document.getElementById("mySidenav").style.width = "0";
         }
-
-        
     </script>
 </body>
 
